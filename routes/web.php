@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// php artisan route:listでrouteの中身を詳しく確認できる.URLの指定しないのであれば上にuse…で記載しても良い
+
+Route::resource('members', App\Http\Controllers\MemberController::class);
