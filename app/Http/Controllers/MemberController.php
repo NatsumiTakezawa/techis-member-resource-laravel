@@ -23,5 +23,5 @@ class MemberController extends Controller
     }
 
 
-    //TODO:バリデーションのemailの際に、unique(重複禁止)を記載return 
+    //TODO:バリデーションのemailの際に、unique(重複禁止)を記載
 }
