@@ -9,10 +9,13 @@
 
 </head>
 <body>
+    <div class="container mt-5">
+    <div class="d-flex justify-content-end mb-3">
     <a href="">>>登録</a>
-        <div>
-            <table class="table">
-                <thead class="table-light">
+    </div>
+        
+            <table class="table table-bordered">
+                <thead>
                     <tr>
                         <th>名前</th>
                         <th>電話番号</th>
