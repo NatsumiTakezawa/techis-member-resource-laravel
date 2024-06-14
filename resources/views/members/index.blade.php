@@ -11,7 +11,8 @@
 <body>
     <div class="container mt-5">
     <div class="d-flex justify-content-end mb-3">
-    <a href="">>>登録</a>
+    <a href="{{ route('members.create')}}">>>登録</a>
+    {{ csrf_field() }}
     </div>
         
             <table class="table table-bordered">
@@ -30,6 +31,7 @@
                         <td>{{ $member->phone }}</td>
                         <td>{{ $member->email }}</td>
                         <td><a href="">>>編集</a></td>
+                        {{ csrf_field() }}
                     </tr>
                     @endforeach
         </div>

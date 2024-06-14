@@ -19,15 +19,17 @@ class MemberController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.TODO:バリデーションにてuniqueの記述必要
+     * 会員登録画面表示
+     * @param Request $request
+     * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('members.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage.TODO:バリデーションにてuniqueの記述必要
      */
     public function store(Request $request)
     {
