@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class MemberController extends Controller
 {
@@ -29,11 +30,30 @@ class MemberController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.TODO:バリデーションにてuniqueの記述必要
+     * 会員登録TODO:バリデーションにてuniqueの記述必要
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
-        //
+        
+        // バリデーション
+        $this->validate($request , [
+            'name' => 'required|max:15',
+            'phone' => 'required|max:15',
+            'email' => 'required|string|max:254|unique:members',
+
+            ]);
+
+        //会員作成
+        Member::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+
+        ]);
+
+        return redirect('members');
     }
 
     /**
@@ -45,7 +65,7 @@ class MemberController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 会員編集画面表示
      */
     public function edit(Member $member)
     {
@@ -53,7 +73,7 @@ class MemberController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 会員情報更新
      */
     public function update(Request $request, Member $member)
     {
@@ -61,7 +81,7 @@ class MemberController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 会員情報削除
      */
     public function destroy(Member $member)
     {

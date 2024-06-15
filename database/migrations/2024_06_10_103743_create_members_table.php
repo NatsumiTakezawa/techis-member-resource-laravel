@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('phone',15);
             $table->string('email',254)->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,5 +27,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('members');
+        
     }
 };
