@@ -72,8 +72,10 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-       
-        return view('members.edit');
+        // $member = Member::find($id);
+        return view('members.edit' , [
+            'member' => $member,
+        ]);
     }
 
     /**
@@ -83,18 +85,20 @@ class MemberController extends Controller
      * @param Member $member
      * @return Response
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request , Member $member)
     {
+            // $id = $request->id;
+
             // バリデーション
             $this->validate($request , [
                 'name' => 'required|max:15',
                 'phone' => 'required|max:15',
-                'email' => 'required|string|max:254|unique:members',
+                'email' => 'required|string|max:254|unique:members,email,' .$member->email.',email',
     
                 ]);
 
 
-                $member = Member::find($request->id);
+                // $member = Member::find($id);
     
             //会員編集
           $member->update([
@@ -116,8 +120,8 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        $member = Member::find($member->id);
-        
+        // $member = Member::find($member->id);
+
         $member->delete();
         return redirect('members');
     }

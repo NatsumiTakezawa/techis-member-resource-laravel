@@ -9,14 +9,29 @@
 
     </head>
     <body>
-    <h1>会員編集 会員ID:{{ $member->('id') }}</h1>
+    <h1>会員編集 会員ID:{{ $member->id }}</h1>
+    <form class="" action="{{ route('members.update' ,  $member->id) }}" method="post">
+    @method('PUT')
     {{ csrf_field() }}
     <div class="d-flex flex-column mb-3">
-    <div class="p-2"><input type="text" name="name" id="name" maxlength="15" placeholder="{{ $member->('name') }}">{{ $errors->first('name') }}</div>
-    <div class="p-2"><input type="text" name="phone" id="phone" maxlength="15" placeholder="{{ $member->('phone') }}">{{ $errors->first('name') }}</div>
-    <div class="p-2"><input type="text" name="email" id="email" maxlength="15" placeholder="{{ $member->('email') }}">{{ $errors->first('email') }}</div>
-    <div class="p-2"><input type="submit" value="編集"></div>
-    <div class="p-2"><input type="submit" value="削除"></div>
+    <div class="p-2"><input type="text" name="name" id="name" maxlength="15" value="{{ $member->name }}">{{ $errors->first('name') }}</div>
+    <div class="p-2"><input type="text" name="phone" id="phone" maxlength="15" value="{{ $member->phone }}">{{ $errors->first('phone') }}</div>
+    <div class="p-2"><input type="text" name="email" id="email" maxlength="254" value="{{ $member->email }}">{{ $errors->first('email') }}</div>
+
+    <!-- 編集ボタン -->
+    <div class="p-2"><input type="hidden" value="{{ $member->id }}" name="id">
+    <button type="submit" id="members-edit-{{$member->id}}"  name="action" value="send" class="submit-button">編集</button>
+    </div>
+    </form>
+
+    <!-- 削除ボタン -->
+    <div class="p-2">
+      <form action="{{ route('members.destroy', $member->id) }}" method="post">
+      {{csrf_field()}}
+      {{ method_field('DELETE') }}
+      <button type="submit" id="members-destroy-{{$member->id}}" name="action" value="send" class="submit-button">削除</button>
+      </div>
+    </form>
     </div>
 </body>
 </html>
