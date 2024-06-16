@@ -9,6 +9,7 @@
 
 </head>
 <body>
+@include('common.errors')
     <div class="container mt-5">
     <div class="d-flex justify-content-end mb-3">
     <a href="{{ route('members.create')}}">>>登録</a>
