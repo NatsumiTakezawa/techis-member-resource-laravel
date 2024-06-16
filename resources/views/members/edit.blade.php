@@ -10,10 +10,11 @@
     </head>
     <body>
     <h1>会員編集 会員ID:{{ $member->('id') }}</h1>
+    {{ csrf_field() }}
     <div class="d-flex flex-column mb-3">
-    <div class="p-2"><input type="text" name="" id="name" placeholder="名前"></div>
-    <div class="p-2"><input type="text" name="" id="phone" placeholder="電話番号"></div>
-    <div class="p-2"><input type="text" name="" id="email" placeholder="メールアドレス"></div>
+    <div class="p-2"><input type="text" name="name" id="name" maxlength="15" placeholder="{{ $member->('name') }}">{{ $errors->first('name') }}</div>
+    <div class="p-2"><input type="text" name="phone" id="phone" maxlength="15" placeholder="{{ $member->('phone') }}">{{ $errors->first('name') }}</div>
+    <div class="p-2"><input type="text" name="email" id="email" maxlength="15" placeholder="{{ $member->('email') }}">{{ $errors->first('email') }}</div>
     <div class="p-2"><input type="submit" value="編集"></div>
     <div class="p-2"><input type="submit" value="削除"></div>
     </div>

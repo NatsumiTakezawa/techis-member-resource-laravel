@@ -30,7 +30,7 @@
                         <td>{{ $member->name }}</td>
                         <td>{{ $member->phone }}</td>
                         <td>{{ $member->email }}</td>
-                        <td><a href="">>>編集</a></td>
+                        <td><a href="{{ route('members.edit', ['id' => $member->id]) }}">>>編集</a></td>
                         {{ csrf_field() }}
                     </tr>
                     @endforeach

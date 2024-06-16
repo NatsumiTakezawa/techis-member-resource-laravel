@@ -30,7 +30,7 @@ class MemberController extends Controller
     }
 
     /**
-     * 会員登録TODO:バリデーションにてuniqueの記述必要
+     * 会員登録
      * @param Request $request
      * @return Response
      */
@@ -66,25 +66,59 @@ class MemberController extends Controller
 
     /**
      * 会員編集画面表示
+     * 
+     * @param Member $member
+     * @return Response
      */
     public function edit(Member $member)
     {
-        //
+       
+        return view('members.edit');
     }
 
     /**
      * 会員情報更新
+     * 
+     * @param Request $request
+     * @param Member $member
+     * @return Response
      */
     public function update(Request $request, Member $member)
     {
-        //
+            // バリデーション
+            $this->validate($request , [
+                'name' => 'required|max:15',
+                'phone' => 'required|max:15',
+                'email' => 'required|string|max:254|unique:members',
+    
+                ]);
+
+
+                $member = Member::find($request->id);
+    
+            //会員編集
+          $member->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+
+          ]);
+    
+            return redirect('members');
     }
 
     /**
      * 会員情報削除
+     * 
+     * @param Request $request
+     * @param Member $member
+     * @return Response
      */
     public function destroy(Member $member)
     {
-        //
+        $member = Member::find($member->id);
+        
+        $member->delete();
+        return redirect('members');
     }
 }
